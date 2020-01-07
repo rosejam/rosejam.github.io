@@ -1,0 +1,28 @@
+ /*
+ 
+@import url("http://cdn.jsdelivr.net/gh/joungkyun/font-d2coding/d2coding.css"); //D2 웹폰트
+@import url("http://cdn.jsdelivr.net/gh/joungkyun/font-d2coding-ligature/d2coding.css"); //D2 웹폰트 (Ligature)
+@font-face {
+  font-family: 'D2 coding';
+  font-style: normal;
+  font-weight: 400;
+  src: url('D2Coding.eot');
+  src: url('D2Coding.eot?#iefix') format('embedded-opentype'),
+       url('D2Coding.woff2') format('x-woff2'),
+       url('D2Coding.woff') format('woff'),
+       url('D2Coding.ttf') format('truetype'),
+       url('D2Coding.svg') format('svg');
+}
+@font-face {
+  font-family: 'D2 coding Ligature';
+  font-style: normal;
+  font-weight: 400;
+  src: url('D2Coding-ligature.eot');
+  src: url('D2Coding-ligature.eot?#iefix') format('embedded-opentype'),
+       url('D2Coding-ligature.woff2') format('x-woff2'),
+       url('D2Coding-ligature.woff') format('woff'),
+       url('D2Coding-ligature.ttf') format('truetype'),
+       url('D2Coding-ligature.svg') format('svg');
+}
+
+*/
