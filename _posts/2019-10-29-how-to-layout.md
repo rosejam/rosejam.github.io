@@ -22,7 +22,9 @@ $right-sidebar-width-wide: 100px !default;
 이 부분 수정하여 너비 넓힘
 ```
 
-utterance 댓글창의 너비 늘리는 법(기존엔 75%너비로 좁아보인다.)
+
+
+utteranc 댓글창의 너비 늘리는 법(기존엔 75%너비로 좁아보인다.)
 
 ```css
 \assets\css\main.scss에
