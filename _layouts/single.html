@@ -65,19 +65,16 @@ layout: default
           <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Updated:" }}</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time></p>
         {% endif %}
       </footer>
-      
-      {% if jekyll.environment == 'production' and site.comments.provider and page.comments %}
-      {% include comments.html %}
-      {% endif %}
-
-      {% if page.share %}{% include social-share.html %}{% endif %}
-
-      {% include post_pagination.html %}
+      <!-- {% if page.share %}{% include social-share.html %}{% endif %}
+      {% include post_pagination.html %} -->
     </div>
 
-    <!-- {% if jekyll.environment == 'production' and site.comments.provider and page.comments %}
+    {% if jekyll.environment == 'production' and site.comments.provider and page.comments %}
       {% include comments.html %}
-    {% endif %} -->
+    {% endif %}
+
+    {% if page.share %}{% include social-share.html %}{% endif %}
+    {% include post_pagination.html %}
   </article>
 
   {% comment %}<!-- only show related on a post page when `related: true` -->{% endcomment %}
