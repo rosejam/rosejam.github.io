@@ -34,7 +34,7 @@ class Queue {
 
     static boolean queueIsEmpty()
     {
-        return (front == rear);
+        return (rear == front);
     }
 
     static boolean queueIsFull()
