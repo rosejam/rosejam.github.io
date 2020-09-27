@@ -1,6 +1,6 @@
 ---
 title: "스택"
-date: 2019-10-30T00:10:00-09:00
+date: 2019-10-30T00:10:00-08:00
 categories:
   - 자료구조
 tags:
@@ -50,7 +50,6 @@ class Stack {
         
         top++;
         stack[top] = value;
-        //stack[++top] = value;
 
         return true;
     }
@@ -70,7 +69,6 @@ class Stack {
         top--;
 
         return value;
-        //return stack[top--]; //return stack[top];
     }
 
     public static void main(String arg[]) throws Exception {

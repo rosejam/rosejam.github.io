@@ -20,7 +20,7 @@ import java.util.Scanner;
 
 class Queue {
 
-    static final int MAX_N = 100; //최대 원소 개수 = MAX_N - 1
+    static final int MAX_N = 100; //최대 원소 개수 + 1
 
     static int front; //head //삭제
     static int rear; //tail //삽입
@@ -39,14 +39,7 @@ class Queue {
 
     static boolean queueIsFull()
     {
-        if ((rear + 1) % MAX_N == front)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return ((rear + 1) % MAX_N == front);
     }
 
     static boolean queueEnqueue(int value)
@@ -56,13 +49,13 @@ class Queue {
             System.out.print("queue overflow!");
             return false;
         }
+      	
         queue[rear] = value;
         rear++;
         if (rear == MAX_N)
         {
             rear = 0;
         }
-        //queue[(rear++)%n] = value;
         
         return true;
     }
@@ -86,7 +79,6 @@ class Queue {
         }
         
         return value;
-        //return queue[(front++)%n] = value; //return queue[(front+1)%n];
     }
 
     public static void main(String arg[]) throws Exception {
