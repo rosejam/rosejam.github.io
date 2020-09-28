@@ -23,13 +23,13 @@ class Queue {
     static final int MAX_N = 100; //최대 원소 개수 + 1
 
     static int rear; //tail //삽입
-  	static int front; //head //삭제
+    static int front; //head //삭제
     static int queue[] = new int[MAX_N];
 
     static void queueInit()
     {
       	rear = 0;
-        front = 0;
+      	front = 0;
     }
 
     static boolean queueIsEmpty()
