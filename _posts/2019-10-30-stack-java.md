@@ -40,6 +40,11 @@ class Stack {
         return (top == MAX_N - 1);
     }
 
+    static int size()
+    {
+        return (top + 1);
+    }
+
     static boolean stackPush(int value)
     {
         if (stackIsFull())
@@ -65,7 +70,7 @@ class Stack {
         //peek
         Integer value = new Integer(stack[top]);
         
-        //delete
+        //remove
         top--;
 
         return value;

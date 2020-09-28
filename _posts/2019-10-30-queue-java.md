@@ -41,6 +41,11 @@ class Queue {
     {
         return ((rear + 1) % MAX_N == front);
     }
+  
+    static int size()
+    {
+        return ((MAX_N - front + rear) % MAX_N);
+    }
 
     static boolean queueEnqueue(int value)
     {
@@ -71,7 +76,7 @@ class Queue {
         //peek
         Integer value = new Integer(queue[front]);
         
-        //delete
+        //remove
         front++;
         if (front == MAX_N)
         {
