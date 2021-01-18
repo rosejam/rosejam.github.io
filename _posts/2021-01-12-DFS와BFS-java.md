@@ -22,11 +22,11 @@ import java.util.Queue;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Main_BJ_1260_DFS와BFS {
 	public static StringBuilder sb;
 	public static StringTokenizer st;
 	public static int N, M, V, s, e;
-	public static int visit[]; // 방문처리는 1번씩 모두 true로 체크하고 끝난다.
+	public static boolean visit[], flag; // 방문처리는 "1번씩 모두" true로 체크하고 끝난다.
 	public static ArrayList<Integer> graph[];
 	public static Stack<Integer> stack;
 	public static Queue<Integer> queue;
@@ -48,9 +48,9 @@ public class Main {
 //			s = Integer.parseInt(st.nextToken());
 //			e = Integer.parseInt(st.nextToken());
 //			// 두 점 사이 여러개의 간선이 있을 수 있음, 간선은 양방향
-//			graph[temp1][temp2] = graph[temp2][temp1] = 1;
+//			graph[s][e] = graph[e][s] = 1;
 //		}
-
+		//
 		// 인접 리스트 방식
 		graph = new ArrayList[N + 1];
 		for (int n = 1; n <= N; n++) {
@@ -67,15 +67,16 @@ public class Main {
 		for (int n = 1; n <= N; n++) {
 			Collections.sort(graph[n]);
 		}
-
+		//
+		
 		sb = new StringBuilder();
 
+		visit = new boolean[N + 1];
 		DFSB(V);
-		//
-//		visit = new int[N + 1];
-//		DFSR(V);
-//		sb.append('\n');
+		
+		sb.append('\n');
 
+		visit = new boolean[N + 1];
 		BFSB(V);
 
 		bw.write(sb.toString());
@@ -83,116 +84,106 @@ public class Main {
 	}
 
 	private static void DFSA(int vertex) {
-		visit = new int[N + 1];
 		stack = new Stack<>();
 		stack.push(vertex);
 		while (!stack.isEmpty()) {
 			vertex = stack.pop();
-			if (visit[vertex] == 0) {
-				visit[vertex] = 1;
+			if (!visit[vertex]) {
+				visit[vertex] = true;
 				sb.append(vertex).append(' ');
+//				//인접행렬방식
 //				for (int i = N; i >= 1; i--) {
-//					if (graph[vertex][i] == 1 && visit[i] == 0) {
+//					if (graph[vertex][i] == 1 && !visit[i]) {
 //						stack.push(i);
 //					}
 //				}
 				for (int i = graph[vertex].size() - 1; i >= 0; i--) {
 					int tmp = graph[vertex].get(i);
-					if (visit[tmp] == 0) {
+					if (!visit[tmp]) {
 						stack.push(tmp);
 					}
 				}
 			}
 		}
-		sb.append('\n');
 	}
 
 	private static void DFSB(int vertex) {
-		visit = new int[N + 1];
 		stack = new Stack<>();
-		visit[vertex] = 1;
+		visit[vertex] = true;
 		sb.append(vertex).append(' ');
 		stack.push(vertex);
 		while (!stack.isEmpty()) {
-//			boolean flag = false;//
-//			vertex = stack.peek();//
-			vertex = stack.pop();//
-			for (int i = 0; i < graph[vertex].size(); i++) {
-				int tmp = graph[vertex].get(i);
-				if (visit[tmp] == 0) {
-					stack.push(vertex);//
-					visit[tmp] = 1;
+//			flag = false;//경우2
+//			vertex = stack.peek();//경우2
+			vertex = stack.pop();//경우1
+			for (int tmp : graph[vertex]) {
+				if (!visit[tmp]) {
+					stack.push(vertex);//경우1 //여기서 추가로 i++을 저장하면 좋다.
+					visit[tmp] = true;
 					sb.append(tmp).append(' ');
 					stack.push(tmp);
-//					flag = true;//
-					break;////
+//					flag = true;//경우2
+					break;/*중요*/
 				}
 			}
-//			if (!flag) {//
-//				stack.pop();//
-//			}
+//			if (!flag) {//경우2
+//				stack.pop();//경우2
+//			}//경우2
 		}
-		sb.append('\n');
 	}
 
 	private static void DFSR(int vertex) {
-		visit[vertex] = 1;
+		visit[vertex] = true;
 		sb.append(vertex).append(' ');
-		for (int i = 0; i < graph[vertex].size(); i++) {
-			int tmp = graph[vertex].get(i);
-			if (visit[tmp] == 0) {
+		for (int tmp : graph[vertex]) {
+			if (!visit[tmp]) {
 				DFSR(tmp);
 			}
 		}
 	}
 
 	private static void BFSA(int vertex) {
-		visit = new int[N + 1];
 		queue = new LinkedList<>();
 		queue.add(vertex);
 		while (!queue.isEmpty()) {
 			vertex = queue.remove();
-			if (visit[vertex] == 0) {
-				visit[vertex] = 1;
+			if (!visit[vertex]) {
+				visit[vertex] = true;
 				sb.append(vertex).append(' ');
+//				//인접행렬방식
 //				for (int i = 1; i <= N; i++) {
-//					if (graph[vertex][i] == 1 && visit[i] == 0) {
+//					if (graph[vertex][i] == 1 && !visit[i]) {
 //						queue.add(i);
 //					}
 //				}
 				for (int i = 0; i < graph[vertex].size(); i++) {
 					int tmp = graph[vertex].get(i);
-					if (visit[tmp] == 0) {
+					if (!visit[tmp]) {
 						queue.add(tmp);
 					}
 				}
 			}
 		}
-		sb.append('\n');
 	}
 
 	private static void BFSB(int vertex) {
-		visit = new int[N + 1];
 		queue = new LinkedList<>();
-		visit[vertex] = 1;
-		sb.append(vertex).append(' ');//
+		visit[vertex] = true;
+		sb.append(vertex).append(' ');//경우1
 		queue.add(vertex);
 		while (!queue.isEmpty()) {
 			vertex = queue.remove();
-//			sb.append(vertex).append(' ');//
-			for (int i = 0; i < graph[vertex].size(); i++) {
-				int tmp = graph[vertex].get(i);
-				if (visit[tmp] == 0) {
-					visit[tmp] = 1;
-					sb.append(tmp).append(' ');//
+//			sb.append(vertex).append(' ');//경우2
+			for (int tmp : graph[vertex]) {
+				if (!visit[tmp]) {
+					visit[tmp] = true;
+					sb.append(tmp).append(' ');//경우1
 					queue.add(tmp);
 				}
 			}
 		}
-		sb.append('\n');
 	}
 
 }
-
 ```
 
